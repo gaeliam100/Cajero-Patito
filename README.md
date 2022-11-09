@@ -1,3 +1,2 @@
-# Cajero-Patito
-Devuelve cambio con C# 
-Aqui podrás encontrar la manera de devolver cambio 
+Proyectos de C# que he aprendido
+y que no puedo olvidar

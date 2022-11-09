@@ -1,0 +1,14 @@
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\bin\Release\CRUD_ADONET.exe.config
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\bin\Release\CRUD_ADONET.exe
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\bin\Release\CRUD_ADONET.pdb
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.csproj.AssemblyReference.cache
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.create.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.Delete.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.principal.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.Properties.Resources.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.read.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.update.resources
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.csproj.GenerateResource.cache
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.csproj.CoreCompileInputs.cache
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.exe
+C:\Users\gaeli\source\repos\CRUD_ADONET\CRUD_ADONET\obj\Release\CRUD_ADONET.pdb

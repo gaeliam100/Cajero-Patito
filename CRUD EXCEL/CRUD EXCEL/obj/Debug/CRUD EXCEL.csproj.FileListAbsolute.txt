@@ -1,0 +1,10 @@
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\bin\Debug\CRUD EXCEL.exe.config
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\bin\Debug\CRUD EXCEL.exe
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\bin\Debug\CRUD EXCEL.pdb
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD EXCEL.csproj.AssemblyReference.cache
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD_EXCEL.Form1.resources
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD_EXCEL.Properties.Resources.resources
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD EXCEL.csproj.GenerateResource.cache
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD EXCEL.csproj.CoreCompileInputs.cache
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD EXCEL.exe
+C:\Users\gaeli\source\repos\CRUD EXCEL\CRUD EXCEL\obj\Debug\CRUD EXCEL.pdb

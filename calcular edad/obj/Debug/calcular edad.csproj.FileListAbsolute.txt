@@ -1,0 +1,11 @@
+C:\Users\gaeli\source\repos\calcular edad\bin\Debug\calcular edad.exe.config
+C:\Users\gaeli\source\repos\calcular edad\bin\Debug\calcular edad.exe
+C:\Users\gaeli\source\repos\calcular edad\bin\Debug\calcular edad.pdb
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular edad.csproj.AssemblyReference.cache
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular_edad.datosob.resources
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular_edad.primero.resources
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular_edad.Properties.Resources.resources
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular edad.csproj.GenerateResource.cache
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular edad.csproj.CoreCompileInputs.cache
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular edad.exe
+C:\Users\gaeli\source\repos\calcular edad\obj\Debug\calcular edad.pdb

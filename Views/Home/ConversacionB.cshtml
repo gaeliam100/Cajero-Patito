@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "ConversacionB";
+}
+
+<h1>ConversacionB</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <h2>Salas de chat</h2>
+        <form asp-action="Room" method="post">
+            <input value="2" />
+            <a href="~/Home/Room?room=2">Bibliotecario</a>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</div>

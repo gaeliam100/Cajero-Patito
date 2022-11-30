@@ -1,0 +1,166 @@
+﻿@model proyecto_aula.Models.Libro
+
+@{
+    ViewData["Title"] = "BuscarLibro";
+}
+
+@{
+    Layout = null;
+}
+<!-------------------------------------------------[Menú desplegable]-------------------------------------------------------------------------->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/EstilosLibro.css">
+    <title>Mis datos - EasyBook</title>
+</head>
+
+<body style="background-color:darkcyan" ;>
+    <div id="sidebar" class="sidebar">
+        <a href="#" class="boton-cerrar" onclick="ocultar()">X</a>
+        <ul class="menu">
+            <img src="~/Imagenesproyecto/imagen1.png" alt="IMG">
+            <li><a href="/Home/Miperfil">Mis datos</a></li>
+            <li><a href="/Home/Confirmacion">Informacion de los prestamos</a></li>
+            <li><a href="/Home/BuscarLibro">Consultar libros</a></li>
+            <li><a href="/Home/Post">Agregar opinión</a></li>
+            <li><a onclick="Abrirchat()">Comunicación</a></li>
+
+            <br>
+            <br>
+            <li><a asp-action="SingOut">Cerrar sesión</a></li>
+        </ul>
+    </div>
+
+    <!-- <div class="container">-->
+    <form method="get" asp-action="BuscarLibro" style="padding:25px;">
+        <!--<div class="row">-->
+        <input type="text" class="form-control" id="Criterio" name="nombre" placeholder="Buscar Libro" style="width: 40%; background-color: whitesmoke; height: 30px; border-radius: 5px; padding:30px, 30px, 30px, 30px; border:solid" />
+        <label>Buscar por genero</label>
+        <select name="Genero" asp-for="Genero" class="form-control" asp-items="ViewBag.GeneroLibroID">
+            <option tabindex="O">Genero</option>
+        </select>
+
+        <select name="Editorial" asp-for="Editorial" class="form-control" asp-items="ViewBag.EditorialLibroID">
+
+            <option tabindex="O">Editorial</option>
+        </select><br />
+        <button type="submit" class="btn btn-primary mb-2" style="font-family: Montserrat-Bold; font-size: 15px; line-height: 1.5;color: darkcyan; text-transform: uppercase; width: 20%; height: 5%; border-radius: 25px; background-color:whitesmoke; display: block; justify-content: center; align-items: center; padding: 0 25px;">Buscar</button>
+    </form>
+
+    <main class="main">
+
+        <div class="row">
+            <div class="col-12">
+                @if (ViewBag.Busqueda != null)
+                {
+                    @if (ViewBag.Busqueda.Count == 0)
+                    {
+                        <div class="alert-primary">
+                            Sin resultados
+                        </div>
+                    }
+                    else
+                    {
+                        <h4>Resultados de la busqueda:</h4>
+                        <div class="row mt-3">
+                            <div class="row mt-3">
+                                @foreach (proyecto_aula.Models.Libro Libro in ViewBag.Busqueda)
+                                {
+                                    <div class="col-4 mb-4 text-center img-div">
+                                        <form asp-action="Solicitarprestamo" method="post">
+                                            <input style="display:none" name="Numerodeboleta" type="text" value="@ViewBag._Usuario.UsuarioID" readonly />
+                                            <div class="col-12">
+                                                <a data-lightbox="roadtrip">
+                                                    <img src="~/Portada/@Libro.Portada" class="img-fluid img_ga img-box" data-lightbox="roadtrip" style="max-height: 250px;" />
+                                                </a>
+                                                <div>
+                                                    <h4>Titulo del Libro</h4>
+                                                    <input name="NombLib" type="text" readonly value="@Libro.NomLib" />
+                                                    <label>Id del libro</label>
+                                                    <input readonly type="text" name="idLibro" value="@Libro.LibroID" />
+                                                    <h5>Numero de paginas del libro</h5>
+                                                    <p class="card-text">@Libro.NumPaginas</p>
+                                                    <h5>Nombre del Autor</h5>
+                                                    <input type="text" readonly value="@Libro.NomAut" />
+                                                    <h5>Genero del libro</h5>
+                                                    <p>@Libro.Genero</p>
+                                                    <h5>Editorial</h5>
+                                                    <p>@Libro.Editorial</p>
+                                                    <button type="submit" class="btn btn-primary">Solicitar Prestamo de este libro</button>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+
+
+
+        <h1>Catalogo de libros</h1>
+        <div class="row mt-3">
+            <div class="row mt-3">
+                @foreach (proyecto_aula.Models.Libro item in ViewBag._Libros)
+                {
+                    <div class="col-4 mb-4 text-center img-div">
+                        <form asp-action="Solicitarprestamo" method="post">
+                            <input style="display:none" name="Numerodeboleta" type="text" value="@ViewBag._Usuario.UsuarioID" readonly />
+                            <div class="col-12">
+                                <a data-lightbox="roadtrip">
+                                    <img src="~/Portada/@item.Portada" class="img-fluid img_ga img-box" data-lightbox="roadtrip" style="max-height: 250px;" />
+                                </a>
+                                <div>
+                                    <h4>Titulo del Libro</h4>
+                                    <input name="NombLib" type="text" readonly value="@item.NomLib" />
+                                    <input type="text" name="idLibro" value="@item.LibroID" />
+                                    <h5>Numero de paginas del libro</h5>
+                                    <p class="card-text">@item.NumPaginas</p>
+                                    <h5>Nombre del Autor</h5>
+                                    <input type="text" readonly value="@item.NomAut" />
+                                    <h5>Genero del libro</h5>
+                                    <p>@item.Genero</p>
+                                    <h5>Editorial</h5>
+                                    <p>@item.Editorial</p>
+                                    <button type="submit" class="btn btn-primary" style="font-family: Montserrat-Bold; font-size: 15px; line-height: 1.5;color: #fff; text-transform: uppercase; width: 40%; height: 20%; border-radius: 25px; background: darkcyan; display: block; justify-content: center; align-items: center; padding: 0 25px;">Solicitar Prestamo de este libro</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+    </main>
+</body>
+
+<!----------------------------[Sección de scripts para el funcionamiento del menú lateral]------------------------------------->
+<script>
+    function mostrar() {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+
+    function ocultar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>|
+<script src="~/js/site.js"></script>

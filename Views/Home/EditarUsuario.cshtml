@@ -1,0 +1,23 @@
+﻿@model proyecto_aula.Models.Prestamo
+@{
+    ViewData["Title"] = "EditarUsuario";
+}
+
+
+
+<h1>Prestamos Entregados</h1>
+<div style="border-color:blue;border:solid"">
+@foreach (proyecto_aula.Models.Prestamo i in ViewBag._Entregados)
+{
+
+        <h6>Usuario que Cumplió</h6>
+        <p>@i.UsuarioI</p>
+        <h6>ID de prestamo realizado</h6>
+        <input name="PrestamoID" value="@i.PrestamoID" readonly />
+        <h6>Ficha y Código correspondiente al prestamo </h6>
+        <p>@i.Fichapdf</p>
+        <h6>Estado del prestamo</h6>
+        <p> type="text" value="@i.Estado"</p>
+
+}
+</div>

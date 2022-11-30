@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Bloque";
+}
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="EstilosMenús.css">
+    <title>Acceso Denegado</title>
+</head>
+<body style="background-color:darkcyan">
+    <div >
+        <div style="width:70%; margin-left:auto; margin-right:auto; background-color:whitesmoke; padding:25px">
+            <h1>Bloque</h1>
+
+<h3>este usuario se encuentra actualmente bloqueado</h3>
+
+<form asp-action="Bloquear" method="get">
+    <button>Volver a la Lista de usuarios</button>
+</form>
+
+        </div>
+    </div>
+</body>
+</html>

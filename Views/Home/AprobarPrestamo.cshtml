@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewData["Title"] = "AprobarPrestamo";
+}
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/EstilosMenús.css">
+    <title>Menú principal - EasyBook</title>
+</head>
+
+<div id="sidebar" class="sidebar">
+    <a href="#" class="boton-cerrar" onclick="ocultar()">X</a>
+    <ul class="menu">
+        <img src="~/Imagenesproyecto/imagen1.png" alt="IMG">
+        <li><a href="/Home/PerfilBiblio">Mis Datos</a></li>
+        <li><a href="/Home/Bloquear">Usuarios con prestamos vencidos/Bloquear</a></li>
+        <li><a href="/Home/Desbloquear">Desbloquear Usuario</a></li>
+         <li><a href="/Home/SeleccionarFicha">Mostrar fichas de usuarios</a></li>
+        <li><a href="/Home/RegistrarLibro">Agregar libro</a></li>
+        <li><a href="/Home/Aprobarprestamo">Aprobar préstamo</a></li>
+        <li><a href="/Home/Entregar">Marcar prestamo como entregado</a></li>
+        <li><a href="/Home/Conversacion">Chat</a></li>
+        <br>
+        <br>
+        <li><a asp-action="SingOut2">Cerrar sesión</a></li>
+    </ul>
+
+</div>
+
+<div id="contenido">
+    <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()"><button id="abrir">Abrir menú</button></a>
+    <a id="cerrar" class="abrir-cerrar" href="#" onclick="ocultar()"></a>
+</div>
+<body style="background-color:darkcyan">
+    <div style="padding: 15px">
+            <h1>AprobarPrestamo</h1>
+        <form method="get" asp-action="AprobarPrestamo">
+    <div class="row">
+        <div class="col-10">
+            <div class="form-group">
+                <input type="number" class="form-control" id="Criterio" name="opcion" placeholder="Buscar Usuario" />
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-12">
+        @if (ViewBag.Usuario != null)
+        {
+            @if (ViewBag.Usuario.Count == 0)
+            {
+                <div class="alert alert-primary" role="alert">
+                    Sin Usuarios
+                </div>
+            }
+            else
+            {
+                <h4>Resultados de la busqueda:</h4>
+                @foreach (proyecto_aula.Models.Prestamo prestamos in ViewBag.Usuario)
+                {
+    <form asp-action="AprobarPrestamo" method="post">
+        <input name="BiblioID" type="text" readonly value="@ViewBag._Bibliotecario.BiblioID" />
+        <div class="container" style="border:solid">
+            <div class="col-md-9">
+                <h6>ID de tu prestamo</h6>
+                <input type="text" name="id" value="@prestamos.PrestamoID"/>
+                <h6>Identificador de tu libro</h6>
+                <p>@prestamos.LibroI</p>
+                <h6>Nombre solicitado Libro solicitado</h6>
+                <p>@prestamos.NomLib</p>
+                <h6>Solicitado por el Usuario</h6>
+                <p>@prestamos.UsuarioI</p>
+                <h6>Estado del prestamo</h6>
+                <p>@prestamos.Estado</p>
+            </div>
+        </div>
+        <button type="submit">Aprobar Prestamo</button>
+    </form>
+                }
+            }
+        }
+    </div>
+</div>
+
+
+
+<h2>TODOS LOS PRESTAMOS POR APROBAR</h2>
+<div>
+
+    @foreach (proyecto_aula.Models.Prestamo prestamos in ViewBag.Estado)
+    {
+<form asp-action="AprobarPrestamo" method="post">
+    <input name="BiblioID" type="text" readonly value="@ViewBag._Bibliotecario.BiblioID" />
+
+    <div class="container" style="border:solid">
+        <div class="col-md-9">
+            <h6>ID de tu prestamo</h6>
+            <input type="text" name="id" value="@prestamos.PrestamoID" />
+            <h6>Identificador de tu libro</h6>
+            <p>@prestamos.LibroI</p>
+            <h6>Nombre solicitado Libro solicitado</h6>
+            <p>@prestamos.NomLib</p>
+            <h6>Solicitado por el Usuario</h6>
+            <p>@prestamos.UsuarioI</p>
+            <h6>Estado del prestamo</h6>
+            <p>@prestamos.Estado</p>
+        </div>
+        <button type="submit">Aprobar</button>
+    </div>
+</form>
+            }
+    </div>
+<!----------------------------[Sección de scripts para el funcionamiento del menú lateral]------------------------------------->
+<script>
+    function mostrar() {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+
+    function ocultar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </div>
+</body>
+

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "SeleccionarFicha";
+}
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/EstilosMenús.css">
+    <title>Menú principal - EasyBook</title>
+</head>
+
+<div id="sidebar" class="sidebar">
+    <a href="#" class="boton-cerrar" onclick="ocultar()">X</a>
+    <ul class="menu">
+        <img src="~/Imagenesproyecto/imagen1.png" alt="IMG">
+        <li><a href="/Home/PerfilBiblio">Mis Datos</a></li>
+        <li><a href="/Home/Bloquear">Usuarios con prestamos vencidos/Bloquear</a></li>
+        <li><a href="/Home/Desbloquear">Desbloquear Usuario</a></li>
+         <li><a href="/Home/SeleccionarFicha">Mostrar fichas de usuarios</a></li>
+        <li><a href="/Home/RegistrarLibro">Agregar libro</a></li>
+        <li><a href="/Home/Aprobarprestamo">Aprobar préstamo</a></li>
+        <li><a href="/Home/Entregar">Marcar prestamo como entregado</a></li>
+        <li><a href="/Home/Conversacion">Chat</a></li>
+        <br>
+        <br>
+        <li><a asp-action="SingOut2">Cerrar sesión</a></li>
+    </ul>
+
+</div>
+
+<div id="contenido">
+    <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()"><button id="abrir">Abrir menú</button></a>
+    <a id="cerrar" class="abrir-cerrar" href="#" onclick="ocultar()"></a>
+</div>
+<body style="background-color:darkcyan; padding:25px">
+    <h1>SeleccionarFicha</h1>
+    <form method="get" asp-action="SeleccionarFicha">
+        <div class="row">
+            <div class="col-10">
+                <div class="form-group">
+                    <input type="text" class="form-control"  name="id" placeholder="Buscar Fichas" />
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+    <div class="col-12">
+        @if (ViewBag.BusquedaF != null)
+        {
+            @if (ViewBag.BusquedaF.Count == 0)
+            {
+                <div class="alert alert-primary" role="alert">
+                    Sin resultados
+                </div>
+            }
+            else
+            {
+                <h4>Resultados de la busqueda:</h4>
+@foreach(proyecto_aula.Models.Prestamo l in ViewBag.BusquedaF)
+{
+    <form asp-action="SeleccionarFicha" method="post">    
+        <h3>Nombre de Usuario</h3>
+    <input type="text" value="@l.UsuarioI" />
+    <h3>Ficha Generada</h3>
+    <input name="Ficha" type="text" value="@l.Fichapdf" />
+    <button type="submit">Abrir la Ficha</button>
+    </form>
+   
+}
+            }
+        }
+    </div>
+</div>
+</body>
+<!----------------------------[Sección de scripts para el funcionamiento del menú lateral]------------------------------------->
+<script>
+    function mostrar() {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+
+    function ocultar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

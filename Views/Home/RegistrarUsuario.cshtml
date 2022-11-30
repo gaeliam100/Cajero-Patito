@@ -1,0 +1,106 @@
+﻿@model proyecto_aula.Models.Usuario
+
+@{
+    ViewData["Title"] = "RegistrarUsuario";
+}
+
+@{
+    Layout = null;
+}
+<style>
+    .ocultar {
+        display: none;
+    }
+
+    .mostrar {
+        display: block;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Estilos.css">
+    <title>Registrarme - EasyBook</title>
+</head>
+<body>
+    @if (ViewBag.Error)
+    {
+        <div class="alert alert-warning" role="alert">
+            El Usuario se encuentra registrado,asegurate
+            de que sean tus datos
+        </div>
+    }
+
+    @if (ViewBag.Completo)
+    {
+        <div class="alert alert-success" role="alert">
+            Muy bien, Usuario registrado correctamente
+        </div>
+    }
+    <br><br><br>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-picregistro" data-tilt>
+                    <img src="~/Imagenesproyecto/EasyBookLogo.jfif" alt="IMG">
+                </div>
+                <form class="login100-form validate-form" asp-action="RegistrarUsuario" id="frmRegistro" method="post" onsubmit="return validar()">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="wrap-input100">
+                        <div class="TituloLogin">
+                            Registro de Usuarios
+                        </div>
+                        <h3 class="InfoSolicitada">Número de boleta:</h3><input type="number" asp-for="UsuarioID" class="input100" maxlength="10" required placeholder="Numero de boleta" /><span asp-validation-for="UsuarioID" class="text-danger"></span>
+
+
+                        <h3 class="InfoSolicitada">Correo:</h3><input type="email" asp-for="Correo" class="input100" required placeholder="Correo electrónico" /> <span asp-validation-for="Correo" class="text-danger"></span>
+
+                        <h3 class="InfoSolicitada">Contraseña:</h3><input type="password" id="Password" asp-for="Password" class="input100" required placeholder="Contraseña" />   <span asp-validation-for="Password" class="text-danger"></span>
+
+                        <h3 class="InfoSolicitada">Repetir contraseña:</h3> <input type="password" name="RepetirPassword" id="RepetirPassword" required placeholder="Repetir contraseña" class="input100" />
+
+                        <h3 class="InfoSolicitada">Nombre(s):</h3><input asp-for="Nombre" class="input100" required placeholder="Nombre" /><span asp-validation-for="Nombre" class="text-danger"></span>
+
+                        <h3 class="InfoSolicitada">Apellido Paterno:</h3> <input asp-for="ApellidoP" class="input100" required placeholder="Apellido Paterno" /><span asp-validation-for="ApellidoP" class="text-danger"></span>
+
+                        <h3 class="InfoSolicitada">Apellido Materno:</h3><input asp-for="ApellidoM" class="input100" required placeholder="Apellido Materno" /><span asp-validation-for="ApellidoM" class="text-danger"></span>
+                    </div>
+                    <div id="error" class="alert-danger ocultar" role="alert">
+                        Las contraseñas no coinciden
+                    </div>
+                    <div id="ok" class="alert-success ocultar" role="alert">
+                        Usuario registrado
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Registrar
+                        </button>
+                    </div>
+                    <div class="text-center p-t-14">
+                        <a class="txt2" href="/Home/Login">
+                            Regresar al inicio de sesión de Usuario
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function validar() {
+            pasword = document.getElementById('Password');
+            repetir = document.getElementById('RepetirPassword');
+            if (pasword.value != repetir.value) {
+                alert("Las contraseñas no coinciden");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+</body>
+@*</html>*@

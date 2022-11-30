@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Conversacion";
+}
+@{
+    Layout=null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/EstilosMenús.css">
+    <title>Mis datos - EasyBook</title>
+</head>
+
+
+<body style="background-color:darkcyan">
+
+    <div style="width: 100%; height: 100%; background: whitesmoke; border-radius: 10px; padding: 100px 100px 100px 100px; margin-left: auto; margin-right: auto;">
+        <h1>Conversación</h1>
+
+@*<div class="row">
+        <div class="col-md-8 offset-2">
+            <h2>Salas de chat</h2>
+            @foreach (var i in proyecto_aula.Controllers.HomeController.SalasC)
+            {
+                <ul class="list-group">
+                    <li>
+                        <a href="~/Home/Room?room=@i.Key">@i.Value</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>*@
+
+
+<div class="row">
+    <div class="col-12">
+
+        <input id="rol" type="text" readonly class="txtMes" value="@ViewBag.Tipo" style="width: 40%; background-color: whitesmoke; height: 30px; border-radius: 5px; padding:30px, 30px, 30px, 30px; border:solid" /><br />
+        <input type="text" placeholder="Usuario" id="user" class="txtMes" value="@ViewBag.Informacion.Nombre" readonly style="width: 40%; background-color: whitesmoke; height: 30px; border-radius: 5px; padding:30px, 30px, 30px, 30px; border:solid"/><br />
+        <input type="text" placeholder="texto" id="message" class="txtMes" name="message" style="width: 80%; background-color: whitesmoke; height: 30px; border-radius: 5px; padding:30px, 30px, 30px, 30px; border:solid"/><br />
+        <button id="btnSend" style="font-family: Montserrat-Bold; font-size: 15px; line-height: 1.5;color: #fff; text-transform: uppercase; width: 40%; height: 20%; border-radius: 25px; background: darkcyan; display: block; justify-content: center; align-items: center; padding: 0 25px;">Send</button>
+    </div>
+</div>
+        <br />
+        <br />
+        <hr />
+<div class="row">
+    <div class="col-6">                                                                                                                                                                                                                                                                                                                                                                                                     
+        <div id="messages">
+        </div>
+    </div>
+    <div class="col-6">
+        <div id="notifications">
+        </div>
+    </div>
+</div>
+    </div>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/Home").build();
+    connection.start();
+
+    document.getElementById("btnSend").addEventListener("click", (event) => {
+        let rol = document.getElementById("rol").value;
+        let user = document.getElementById("user").value;
+        let message = document.getElementById("message").value;
+
+        connection.invoke("SendMessage",rol,user,message)
+            .catch((err) => console.error(err.toString()));
+        document.getElementById("message").value = "";
+        document.getElementById("message").focus();
+        event.preventDefault();
+    })
+
+    connection.on("ReceiveMessage",(rol, user, message) => {
+        var message = "<div>+ <b+>"+ rol +"</b>" +""+""+""+ "<b>" + user + "" + "" + "dijo </b>" + "" + "" + message + "</div>";
+        document.getElementById("messages").innerHTML =
+            message + document.getElementById("messages").innerHTML;
+    });
+</script>
+<script>
+    function mostrar() {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+    
+    function ocultar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/site.js"></script>
+</body>

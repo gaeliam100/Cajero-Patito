@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "Miperfil";
+}
+@{
+    Layout=null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/EstilosMenús.css">
+    <title>Mis datos - EasyBook</title>
+</head>
+<body>
+    <!-------------------------------------------------[Menú desplegable]-------------------------------------------------------------------------->
+    <div id="sidebar" class="sidebar">
+      <a href="#" class="boton-cerrar" onclick="ocultar()">X</a>
+      <ul class="menu">
+          <img src="~/Imagenesproyecto/imagen1.png" alt="IMG" id="imgP">
+          <li><a href="/Home/Miperfil">Mis datos</a></li>
+          <li><a href="/Home/Confirmacion">Informacion de los prestamos</a></li>
+          <li><a href="/Home/BuscarLibro">Consultar libros</a></li>
+          <li><a href="/Home/Post">Agregar opinión</a></li>
+          <li><a onclick="Abrirchat()">Comunicación</a></li>
+
+          <br>
+          <br>
+          <li><a asp-action="SingOut">Cerrar sesión</a></li>
+      </ul>
+    
+  </div>
+    
+    <div id="contenido">
+      <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()"><button id="abrir">Abrir menú</button></a>
+      <a id="cerrar" class="abrir-cerrar" href="#" onclick="ocultar()"></a>
+      
+    </div>
+    <div class="limiter">
+        <div class="container" id="Fondo" style="width:70%; margin-left:auto; margin-right:auto;">
+          <h1>Mis Datos </h1>
+          <br><br><br>
+          <div class="row">
+            <div class="col">
+              <a><img src="~/Perfil/@ViewBag._Usuario.Imagenp" class="img-thumbnail" style="border: solid; border-color: darkcyan; width: 200px; height: 200px; padding: 0px;"/></a>
+                <form asp-action="CambiarIm" method="post" enctype="multipart/form-data">
+                    <input name="Imagen" type="file" accept="image/*" required />
+                    <button type="submit">Cambiar Mi Imagen de perfil</button>
+                </form>
+            </div>
+              
+          <div class="row">
+            Nombre<input type="text" value="@ViewBag._Usuario.Nombre"  readonly/>
+            <input type="text" value="@ViewBag._Usuario.ApellidoP" readonly />
+            <input type="text" value="@ViewBag._Usuario.ApellidoM" readonly/>
+          </div>
+          <div class="row">
+            <label>Usuario</label>
+            <input type="text" value="@ViewBag._Usuario.UsuarioID" readonly/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----------------------------[Sección de scripts para el funcionamiento del menú lateral]------------------------------------->
+    <script>
+    function mostrar() {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+    
+    function ocultar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/site.js"></script>    
+</body>
+
+
+
+
